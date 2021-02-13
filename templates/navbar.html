@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top: 3%; display: flex; align-items: center">
+    <a class="navbar-brand" href="{% url 'Product:index' %}"><strong>Kraya</strong></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+            {% for onecategory in category %}
+            <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">{{ onecategory.category|title }}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    {% for onesubcategory in onecategory.subcategory_set.all %}
+                        <a class="dropdown-item" href="#">{{ onesubcategory.subcategory|title }}</a>
+                    {% endfor %}
+                </div>
+            </li>
+            {% endfor %}
+            <a href="{% url 'login' %}" >
+                <button type="button" class="btn btn-primary">Login</button>
+            </a>
+            <a href="{% url 'signup' %}" style="margin-left: 10px;">
+                <button type="button" class="btn btn-warning" >Signup</button>
+            </a>
+
+        </ul>
+
+    </div>
+</nav>
